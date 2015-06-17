@@ -70,7 +70,7 @@ function plugin_security_scanner_options() {
 
 				if ( isset( $plugin->plugin->vulnerabilities ) ) {
 					foreach ( $plugin->plugin->vulnerabilities as $vuln ) {
-						if ( version_compare( $details['Version'], $vuln->fixed_in, '<' ) ) {
+						if ( !isset($vuln->fixed_in) || version_compare( $details['Version'], $vuln->fixed_in, '<' ) ) {
 							echo '<p><strong>Vulnerability found:</strong> ' . esc_html( $vuln->title ) . ' -- <a href="' . esc_url( 'https://wpvulndb.com/vulnerabilities/' . $vuln->id ) . '" target="_blank">View details</a></p>';
 
 							$vulnerability_count++;
