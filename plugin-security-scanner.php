@@ -63,6 +63,8 @@ function plugin_security_scanner_options() {
 		if ( preg_match( '|(.+)/|', $name, $matches ) ) {
 			$result = $request->request( 'https://wpvulndb.com/api/v1/plugins/' . $matches[1] );
 
+			ob_start();
+
 			if ( $result['body'] ) {
 				$plugin = json_decode( $result['body'] );
 
